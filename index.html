@@ -5,7 +5,7 @@
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <meta name="generator" content="Asciidoctor 1.5.3"> 
-  <title>Using an Existing Gradle Build</title> 
+  <title>Getting Started Using an Existing Gradle Build</title> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> 
   <link rel="stylesheet" href="./coderay-asciidoctor.css"> 
   <link rel="stylesheet" href="https://guides.gradle.org/asciidoctor.css"> 
@@ -34,56 +34,159 @@
    <div style="padding-top: 10px;">
     <a href="https://guides.gradle.org"><img src="http://guides.gradle.org/gradle-guides.svg" alt=""></a>
    </div> 
-   <h1>Using an Existing Gradle Build <span class="image"><a class="image" href="https://travis-ci.org/gradle-guides/using-an-existing-gradle-build"><img src="https://travis-ci.org/gradle-guides/using-an-existing-gradle-build.svg?branch=master" alt="Build Status"></a></span></h1> 
+   <h1>Getting Started Using an Existing Gradle Build <span class="image"><a class="image" href="https://travis-ci.org/gradle-guides/using-an-existing-gradle-build"><img src="https://travis-ci.org/gradle-guides/using-an-existing-gradle-build.svg?branch=master" alt="Build Status"></a></span></h1> 
    <div id="toc" class="toc2"> 
     <div id="toctitle">
      Table of Contents
     </div> 
     <ul class="sectlevel1"> 
-     <li><a href="#what_you_ll_build">What you’ll build</a></li> 
      <li><a href="#what_you_ll_need">What you’ll need</a></li> 
-     <li><a href="#step_1">Step 1</a></li> 
-     <li><a href="#step_2">Step 2</a></li> 
-     <li><a href="#step_n">Step N</a></li> 
-     <li><a href="#summary">Summary</a></li> 
+     <li><a href="#step_1_install_java">Step 1: Install Java</a></li> 
+     <li><a href="#step_2_does_the_project_use_the_gradle_wrapper">Step 2: Does the project use the Gradle wrapper?</a></li> 
+     <li><a href="#step_3_executing_the_build">Step 3: Executing the build</a></li> 
+     <li><a href="#step_4_identify_the_type_of_project">Step 4: Identify the type of project</a></li> 
+     <li><a href="#step_5_troubleshooting">Step 5: Troubleshooting</a></li> 
     </ul> 
    </div> 
   </div> 
   <div id="content"> 
-   <div class="sect1"> 
-    <h2 id="what_you_ll_build"><a class="anchor" href="#what_you_ll_build"></a>What you’ll build</h2> 
+   <div id="preamble"> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>You are a <em>build user</em> in our terminology. You want to be able to run the tool either from the command line or an IDE (or both). Follow these steps and you’ll have Gradle up and running in no time. You’ll also learn how to explore a Gradle build and find out what tasks you can execute and what they do.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
     <h2 id="what_you_ll_need"><a class="anchor" href="#what_you_ll_need"></a>What you’ll need</h2> 
     <div class="sectionbody"> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p>About 5 minutes</p> </li> 
+       <li> <p>A text editor or IDE</p> </li> 
+       <li> <p>A Java Development Kit (JDK), version 1.7 or better</p> </li> 
+       <li> <p>(Possibly) A <a href="https://gradle.org/install">Gradle distribution</a>, version 3.3 or better</p> </li> 
+      </ul> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_1"><a class="anchor" href="#step_1"></a>Step 1</h2> 
+    <h2 id="step_1_install_java"><a class="anchor" href="#step_1_install_java"></a>Step 1: Install Java</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>Gradle is a Java-based tool, which means you need a Java Virtual Machine (JVM) installed on your computer to use it. Gradle is happy with either a Java Runtime Environment (JRE) or a full Java Development Kit (JDK). You may already have a JRE installed if your browser has loaded a Java Applet in the past. You’ll soon discover whether you need to install a JVM yourself when you attempt to run Gradle.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>Gradle will work with version 7 and above of Java (1.7+ in JDK versioning). If you don’t yet have either a JRE or JDK installed, we recommend you <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download JDK 8</a> and then follow <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html">Oracle’s instructions on installing it</a>.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_2"><a class="anchor" href="#step_2"></a>Step 2</h2> 
+    <h2 id="step_2_does_the_project_use_the_gradle_wrapper"><a class="anchor" href="#step_2_does_the_project_use_the_gradle_wrapper"></a>Step 2: Does the project use the Gradle wrapper?</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>Look in the root of the project for a <code>gradlew</code> file. If it exists, you can use the Gradle wrapper to execute the build without installing Gradle. The user guide has a short section describing <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html#using_wrapper_scripts">how to use it</a>. In essence, it automatically downloads and uses the appropriate version of Gradle for that particular build.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>If that file doesn’t exist, you’ll need to install Gradle and there are <a href="https://gradle.org/install">various approaches</a>.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>If you do come across a build without a wrapper, politely ask the owner to generate it or (if you have permission to commit the changes) <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:wrapper_generation">generate it yourself</a>. We strongly recommend using the wrapper for Gradle builds to ensure the appropriate version of Gradle is always used to build your project, which iis important for reproducibility. It also means people don’t need to install Gradle just to execute your build.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_n"><a class="anchor" href="#step_n"></a>Step N</h2> 
+    <h2 id="step_3_executing_the_build"><a class="anchor" href="#step_3_executing_the_build"></a>Step 3: Executing the build</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>There are two main ways to interact with Gradle: through the command line or via an IDE. Fortunately, they’re not mutually exclusive, so you can take a mix and match approach. Ideally, you should configure your IDE to use the Gradle wrapper whenever it’s available.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>Another important aspect of executing Gradle builds is what we call the <em>Gradle daemon</em>. This is designed to improve the startup and execution speed of builds significantly. It’s off by default, but we recommend enabling it globally on developer machines via <a href="https://docs.gradle.org/current/userguide/gradle_daemon.html">the techniques described in the user guide</a>.</p> 
+     </div> 
+     <div class="sect2"> 
+      <h3 id="using_the_command_line"><a class="anchor" href="#using_the_command_line"></a>Using the command line</h3> 
+      <div class="paragraph"> 
+       <p>The user guide <a href="https://docs.gradle.org/current/userguide/tutorial_gradle_command_line.html">explains in depth</a> how to use the <code>gradle</code> command (or the wrapper, <code>gradlew</code>) to list tasks, execute them, and query for other build information, such as which projects are managed by the build.</p> 
+      </div> 
+     </div> 
+     <div class="sect2"> 
+      <h3 id="using_an_ide"><a class="anchor" href="#using_an_ide"></a>Using an IDE</h3> 
+      <div class="paragraph"> 
+       <p>Many IDEs (certainly the ones in the Java ecosystem) allow you to import projects via their Gradle build files. This is the preferred approach as it means you can do everything you need to from the IDE, such as refresh the dependencies and view the available tasks.</p> 
+      </div> 
+      <div class="paragraph"> 
+       <p>To learn more about the Gradle support in the IDE you use, see the following:</p> 
+      </div> 
+      <div class="paragraph"> 
+       <p>&lt;ul&gt; {% for ide in site.data.ides %} &lt;li&gt;&lt;a href="{{ ide.url }}"&gt;{{ ide.name }}&lt;/a&gt;&lt;/li&gt; {% endfor %} &lt;/ul&gt;</p> 
+      </div> 
+      <div class="paragraph"> 
+       <p>You can also use Gradle plugins to customize the IDE integration. The user guide explains how the <a href="https://docs.gradle.org/current/userguide/eclipse_plugin.html">Eclipse</a> and <a href="https://docs.gradle.org/current/userguide/idea_plugin.html">IDEA</a> plugins can be configured to provide extra IDE customization such as custom run configurations and default VCS integration.</p> 
+      </div> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="summary"><a class="anchor" href="#summary"></a>Summary</h2> 
+    <h2 id="step_4_identify_the_type_of_project"><a class="anchor" href="#step_4_identify_the_type_of_project"></a>Step 4: Identify the type of project</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>Gradle can be used to build anything, such as Java projects, C++ projects, documentation and more. Even so, most Gradle builds are one of the core types: <em>Java</em>, <em>native</em>, or <em>Android</em>. Each of these has a set of conventions and concepts specific to that type, such as where to put your source files, what tasks you can execute and what binaries the build produces. It’s important to understand these build-specific features so that you can easily find your way around a project and its build.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>So what type of project are you working with? To find out, you just need to ask yourself a few questions:</p> 
+     </div> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p>Run the command gradle projects. Does it list more than the root project? If so, start by <a href="https://docs.gradle.org/current/userguide/intro_multi_project_builds.html">learning about multi-project builds</a>. Note that IDEs will automatically import subprojects as modules (IDEA) or projects (Buildship).</p> </li> 
+       <li> <p>Look in each project or subproject build file (<code>*.gradle</code>) for a line of the form:</p> </li> 
+      </ul> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre class="CodeRay highlight"><code data-lang="groovy">apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">[lang]</span><span class="delimiter">'</span></span></code></pre> 
+      </div> 
+     </div> 
+     <div class="paragraph"> 
+      <p>or a similar entry in the plugins block:</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+   <span class="key">id</span>: <span class="string"><span class="delimiter">'</span><span class="content">[lang]</span><span class="delimiter">'</span></span>
+}</code></pre> 
+      </div> 
+     </div> 
+     <div class="paragraph"> 
+      <p>where <code>[lang]</code>&nbsp;is one of the strings mentioned in the next entry.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>There are three language groupings, which correspond to Java (or more correctly the JVM), native, and Android projects. Find out more about the grouping your project or projects fall into based on :</p> 
+     </div> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p><code>java</code>, <code>groovy</code>, <code>scala</code>: you have <a href="https://docs.gradle.org/current/userguide/tutorial_java_projects.html">a JVM project</a>. The user guide also has more details about each of the language plugins if you want a bit more depth.</p> </li> 
+       <li> <p><code>c</code>, <code>cpp</code>, <code>assembler</code>, <code>objective-c</code>, <code>objective-cpp</code>: you have <a href="https://docs.gradle.org/current/userguide/build_init_plugin.html#sec:build_init_types">a native build</a>.</p> </li> 
+       <li> <p><code>android</code>: you have <a href="http://tools.android.com/tech-docs/new-build-system/user-guide">an Android project</a>.</p> </li> 
+      </ul> 
+     </div> 
+     <div class="paragraph"> 
+      <p>Some projects won’t fall into any of these core categories, in which case you’ll need to do a bit more research to find out which, if any, of the plugins introduce special conventions. Most plugins will have at least some basic documentation explaining how they work. You can also run <code>gradle tasks</code> to learn more about the build, or <code>gradle help --task [taskName]</code> to find out what a task does and what command-line options it supports.</p> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="sect1"> 
+    <h2 id="step_5_troubleshooting"><a class="anchor" href="#step_5_troubleshooting"></a>Step 5: Troubleshooting</h2> 
+    <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>You should now know enough to navigate around the project, run tests, find out what libraries a project depends on, and execute tasks. If you do happen to run into difficulties, check out the <a href="https://docs.gradle.org/current/userguide/troubleshooting.html">troubleshooting section</a> of the user guide for advice. If that doesn’t help, you can always ask questions on the <a href="https://discuss.gradle.org/">Gradle forums</a>.</p> 
+     </div> 
     </div> 
    </div> 
   </div> 
   <div id="footer"> 
    <div id="footer-text">
-     Last updated 2017-03-03 11:30:48 UTC 
+     Last updated 2017-03-05 17:41:34 UTC 
    </div> 
   </div>  
  </body>

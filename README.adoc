@@ -38,14 +38,6 @@ The user guide https://docs.gradle.org/current/userguide/tutorial_gradle_command
 
 Many IDEs (certainly the ones in the Java ecosystem) allow you to import projects via their Gradle build files. This is the preferred approach as it means you can do everything you need to from the IDE, such as refresh the dependencies and view the available tasks.
 
-To learn more about the Gradle support in the IDE you use, see the following:
-
-<ul>
-  {% for ide in site.data.ides %}
-  <li><a href="{{ ide.url }}">{{ ide.name }}</a></li>
-  {% endfor %}
-</ul>
-
 You can also use Gradle plugins to customize the IDE integration. The user guide explains how the https://docs.gradle.org/current/userguide/eclipse_plugin.html[Eclipse] and https://docs.gradle.org/current/userguide/idea_plugin.html[IDEA] plugins can be configured to provide extra IDE customization such as custom run configurations and default VCS integration.
 
 == Step 4: Identify the type of project

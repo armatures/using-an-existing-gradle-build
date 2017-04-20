@@ -1,5 +1,4 @@
-= Getting Started Using an Existing Gradle Build image:https://travis-ci.org/{repo-path}.svg?branch=master["Build Status", link="https://travis-ci.org/{repo-path}"]
-
+= Using an Existing Gradle Build
 
 You are a _build user_ in our terminology. You want to be able to run the tool either from the command line or an IDE (or both). Follow these steps and you'll have Gradle up and running in no time. You'll also learn how to explore a Gradle build and find out what tasks you can execute and what they do.
 

@@ -21,7 +21,7 @@ Look in the root of the project for a `gradlew` file. If it exists, you can use 
 
 If that file doesn't exist, you'll need to install Gradle and there are https://gradle.org/install[various approaches].
 
-If you do come across a build without a wrapper, politely ask the owner to generate it or (if you have permission to commit the changes) https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:wrapper_generation[generate it yourself]. We strongly recommend using the wrapper for Gradle builds to ensure the appropriate version of Gradle is always used to build your project, which iis important for reproducibility. It also means people don't need to install Gradle just to execute your build.
+If you do come across a build without a wrapper, politely ask the owner to generate it or (if you have permission to commit the changes) https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:wrapper_generation[generate it yourself]. We strongly recommend using the wrapper for Gradle builds to ensure the appropriate version of Gradle is always used to build your project, which is important for reproducibility. It also means people don't need to install Gradle just to execute your build.
 
 == Step 3: Executing the build
 
